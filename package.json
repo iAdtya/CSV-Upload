@@ -1,0 +1,40 @@
+{
+  "name": "csv-upload",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "CSV UPLOAD is a web-app allows the user to upload and parse CSV files, The application is built with Node.js and Express, and it provides a simple and user-friendly interface for managing CSV data",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iAdtya/CSV-Upload.git"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "express",
+    "js",
+    "mongodb",
+    "csv-parser"
+  ],
+  "author": "Aditya Khedekar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iAdtya/CSV-Upload/issues"
+  },
+  "homepage": "https://github.com/iAdtya/CSV-Upload#readme",
+  "dependencies": {
+    "csv-parse": "^5.5.2",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "mongodb": "^6.1.0",
+    "mongoose": "^7.6.2",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.0.1"
+  }
+}

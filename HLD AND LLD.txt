@@ -1,0 +1,37 @@
+CSV Upload
+
+TIME: 6 hours (Ideal time of completion: 4.5 hours)
+
+
+This time you will work with external data, as in 'csv' files. You will need to upload a CSV file and show the data in it
+
+Extra Points:
+- Well commented code 
+- Readme on how to setup the project on local system
+- Scaleable folder structure (separate models, controllers and routes)
+
+Task
+- Upload any csv file into the system (consider the delimiter to be a comma ' , ') [If you don't know what's a csv, download the other file in this folder and take a look at it, then google a little more]
+- Display a list of all uploaded csv files
+- When the user selects a file, display all the data (with column headers) in a table on the page (front end)
+- There should be a search box which searches on the front end itself and displays the matching rows of the table only (empty search box displays all the data). (you can put a search on any one column)
+- DIFFERENT CSV FILES WITH DIFFERENT COLUMN HEADERS CAN BE UPLOADED, YOUR TABLE HEADERS SHOULD BE DYNAMIC
+- [EXTRA POINTS] Sorting button (ascending and descending) for each column on the front end
+- [EXTRA POINTS] Put a validation on the front end and server side on being able to upload only csv type of files
+- [SUPER EXTRA POINTS] Pagination of the data displayed in the table to a max of 100 records per page
+- [SUPER DUPER EXTRA POINTS] Integrate a charting library like google charts/d3.js/etc to display a selected column
+
+Free Hints
+- YOU CAN FIND A GOOD NPM LIBRARY TO READ/PARSE CSV
+- FRONT END SEARCH IS TO BE DONE USING JAVASCRIPT
+- USE PEN AND PAPER TO DEFINE THE STEPS 
+- WORK ON ONE STEP AT A TIME (in the order they are mentioned, DON'T THINK ABOUT THE COMPLETE APP TOGETHER
+
+
+To Submit:
+- Record a video (max 3 minutes) with the following details (and upload it to drive/youtube with public access, VIDEO SHOULD BE ACCESSIBLE BY ANYONE):
+- Explain through the folder structure (what is placed where and why)
+- Explain the running code using Postman
+- Upload the project files on github.com 
+
+
