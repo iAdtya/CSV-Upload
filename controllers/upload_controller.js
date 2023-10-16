@@ -2,6 +2,7 @@ import file from "../models/Files.js";
 import multer from "multer";
 import path from "path";
 import parse from "csv-parser";
+import fs from "fs";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -41,8 +42,37 @@ export const uploadFile = async (req, res) => {
 };
 
 export const renderFile = async (req, res) => {
+  console.log("renderFile");
   try {
+    const csvFile = await file.findOne({ file: req.params.id });
+    if (!csvFile) {
+      return res.status(404).json({ error: "File not found" });
+    }
+    const results_array = [];
+    const header = [];
+    fs.createReadStream(csvFile.path)
+      .pipe(parse())
+      .on("headers", (headers) => {
+        headers.map((head) => {
+          header.push(head);
+        });
+        console.log(header); //?debug
+      })
+
+      .on("data", (data) => results_array.push(data))
+      .on("end", () => {
+        // console.log(results.length);
+        console.log(results_array);
+        res.render("list_csv", {
+          title: "File Viewer",
+          fileName: csvFile.filename,
+          head: header,
+          data: results_array,
+          length: results_array.length,
+        });
+      });
   } catch (error) {
+    console.error("Error in renderFile route:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
 };

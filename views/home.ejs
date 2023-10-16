@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/f383b6eabf.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
   </head>
   <body>
@@ -12,8 +16,48 @@
         <input type="file" id="csvUpload" name="uploaded_file" accept=".csv" />
         <button>upload</button>
       </form>
+
       <div>
-        <a href="/view/<%= file.file %>" class="view-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div>
+          <h1>uploaded Files!!</h1>
+        </div>
+
+        <%if(file.length==0){%>
+        <div>
+          <h1>No files uploaded!!</h1>
+        </div>
+        <%}else{%>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Time (UTC)</th>
+              <th>View</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(let files of file) { %>
+            <tr>
+              <td><%= files.fileName %></td>
+              <td><%= files.createdAt.toLocaleDateString() %></td>
+              <td><%= files.createdAt.toLocaleTimeString() %></td>
+              <td>
+                <a href="/view/<%= files.file %>" class="view-link"
+                  ><i class="fa-solid fa-arrow-up-right-from-square"></i
+                ></a>
+              </td>
+              <td>
+                <a href="/delete/<%= files.file %>" class="delete-link"
+                  ><i class="fa-regular fa-trash-can" style="color: #f00"></i
+                ></a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
       </div>
     </div>
   </body>
