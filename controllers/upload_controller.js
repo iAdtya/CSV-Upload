@@ -29,13 +29,14 @@ export const uploadFile = async (req, res) => {
       return res.status(400).send("Select CSV files only.");
     }
 
-    const newfile = file.create({
+    const newfile = await  file.create({
       filename: req.file.originalname,
       path: req.file.path,
       size: req.file.size,
       file: req.file.filename,
     });
-    return res.status(200).send(`File uploaded successfully: ${newfile}`);
+    console.log("File uploaded successfully", newfile);
+    return res.status(200).redirect("/");
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
   }
@@ -74,5 +75,21 @@ export const renderFile = async (req, res) => {
   } catch (error) {
     console.error("Error in renderFile route:", error);
     res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
+export const deleteFile = async (req, res) => {
+  try {
+    const delfile = await file.findOne({ file: req.params.id });
+    if (!delfile) {
+      return res.status(404).send({ error: "File not found" }).redirect("/");
+    } else {
+      await delfile.deleteOne({ file: req.params.id });
+      console.log("File deleted successfully");
+      return res.redirect("/");
+    }
+  } catch (error) {
+    console.error("Error in deleteFile route:", error);
+    res.status(500).send({ error: "Something went wrong" }).redirect("/");
   }
 };
