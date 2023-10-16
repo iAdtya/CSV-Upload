@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h1>csv upload viewer!!!</h1>
+    </div>
+
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <%for(let i of head) {%>
+            <th><%=i %></th>
+            <%}%>
+          </tr>
+        </thead>
+        <tbody>
+          <%for(let row of data) {%>
+          <tr>
+            <% for(let key of object.keys(row)){%>
+
+            <td><%=row[key]%></td>
+
+            <%}>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

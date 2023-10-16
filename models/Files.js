@@ -14,6 +14,10 @@ const FileSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    file:{
+      type: String,
+      required: true,
+    }
   },
   {
     timestamps: true

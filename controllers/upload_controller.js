@@ -1,7 +1,7 @@
 import file from "../models/Files.js";
 import multer from "multer";
 import path from "path";
-import { parse } from "csv-parse";
+import parse from "csv-parser";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -18,22 +18,31 @@ const storage = multer.diskStorage({
 
 export const upload = multer({ storage: storage });
 
-const uploadFile = async (req, res) => {
-  console.log(req.file,req.body);
+export const uploadFile = async (req, res) => {
+  console.log(req.file);
   try {
     if (!req.file) {
       return res.status(400).send("Please upload a file");
     }
-    const newfile = new file({
+    if (req.file.mimetype != "text/csv") {
+      return res.status(400).send("Select CSV files only.");
+    }
+
+    const newfile = file.create({
       filename: req.file.originalname,
       path: req.file.path,
       size: req.file.size,
+      file: req.file.filename,
     });
-    await newfile.save();
     return res.status(200).send(`File uploaded successfully: ${newfile}`);
   } catch (error) {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
 
-export default uploadFile;
+export const renderFile = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
