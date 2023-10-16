@@ -1,5 +1,8 @@
 import express from "express";
-import  routes  from "./routes/index.js";
+import routes from "./routes/index.js";
+import responseTime from "response-time";
+import client from "prom-client";
+
 
 const app = express();
 
@@ -19,12 +22,48 @@ app.use(express.static("./assets"));
 
 app.use("/", routes);
 
+const collectDefaultMetrics = client.collectDefaultMetrics;
+
+const Registry = client.Registry;
+const register = new Registry();
+collectDefaultMetrics({ register });
+
+const reqResTime = new client.Histogram({
+  name: "http_express_req_res_time",
+  help: "this tells how much time is taken by req and res",
+  labelNames: ["method", "route", "status_code"],
+  buckets: [1, 5, 15, 50, 100, 500, 1000, 2000],
+});
+
+const totalRequests = new client.Counter({
+  name: "total_requests",
+  help: "this tells the total number of requests",
+});
+
+app.use(
+  responseTime((req, res, time) => {
+    totalRequests.inc();
+    reqResTime
+      .labels({
+        method: req.method,
+        route: req.url,
+        status_code: res.statusCode,
+      })
+      .observe(time);
+  })
+);
+
+app.get("/metrics", async (req, res) => {
+  res.setHeader("content-type", client.register.contentType);
+  const metrics = await client.register.metrics();
+  res.send(metrics);
+});
+
 app.listen(port, async (error) => {
   if (error) {
     console.log(`error in running the server :: ${error}`);
     return;
   }
-  console.log(`server is running on port :: ${port}`);
+  console.log(`Server beating 💓 on port :: ${port}`);
   await connectDB();
 });
-

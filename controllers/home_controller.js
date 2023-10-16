@@ -2,7 +2,7 @@ import file from "../models/Files.js";
 
 const home = async (req, res) => {
   try {
-    const files = await file.find({});
+    const files = await file.find({}).sort("-createdAt");
     return res.render("home", {
       title: "Home",
       file: files,
