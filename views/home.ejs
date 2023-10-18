@@ -7,12 +7,14 @@
       src="https://kit.fontawesome.com/f383b6eabf.js"
       crossorigin="anonymous"
     ></script>
-    <title>Document</title>
+    <title>Csv Upload!!</title>
   </head>
   <body>
+    <nav>
+      <h1>Csv Upload!!</h1>
+    </nav>
     <div>
       <form action="/upload" method="post" enctype="multipart/form-data">
-        <h1>Csv upload!!</h1>
         <input type="file" id="csvUpload" name="uploaded_file" accept=".csv" />
         <button>upload</button>
       </form>
@@ -35,16 +37,19 @@
               <th>Time (UTC)</th>
               <th>View</th>
               <th>Delete</th>
+              <th>Json data</th>
             </tr>
           </thead>
           <tbody>
             <% for(let files of file) { %>
             <tr>
-              <td><%= files.fileName %></td>
+              <td><%= files.filename %></td>
               <td><%= files.createdAt.toLocaleDateString() %></td>
               <td><%= files.createdAt.toLocaleTimeString() %></td>
               <td>
-                <a href="/view/<%= files.file %>" class="view-link"
+                <a
+                  href="/view/<%= files.file %>?filename=<%= files.file %>"
+                  class="view-link"
                   ><i class="fa-solid fa-arrow-up-right-from-square"></i
                 ></a>
               </td>
