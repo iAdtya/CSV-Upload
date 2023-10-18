@@ -38,37 +38,6 @@
         </tbody>
       </table>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   
-    <script src="/js/ajax_data.js"></script>
-  <script>
-    const dataFromController = <%= JSON.stringify(data) %>; //how to use the ajax data 
-  
-    const labels = dataFromController.map((item) => item.Date); // Assuming Date is the label
-    const marketPriceData = dataFromController.map((item) => item.Close); // Assuming Close is the market price
-  
-    const ctx = document.getElementById("myChart");
-  
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: ["Date", "Open", "High", "Low", "Close", "Next Day'"],
-        datasets: [
-          {
-            label: "# market price",
-            data: marketPriceData,
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
-    });
-  </script>
+   <script src="/js/ajax_data.js"></script>
   </body>
 </html>
