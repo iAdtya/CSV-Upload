@@ -3,6 +3,7 @@ import multer from "multer";
 import path from "path";
 import parse from "csv-parser";
 import fs from "fs";
+import { Chart } from "chart.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -29,7 +30,7 @@ export const uploadFile = async (req, res) => {
       return res.status(400).send("Select CSV files only.");
     }
 
-    const newfile = await  file.create({
+    const newfile = await file.create({
       filename: req.file.originalname,
       path: req.file.path,
       size: req.file.size,
@@ -43,7 +44,7 @@ export const uploadFile = async (req, res) => {
 };
 
 export const renderFile = async (req, res) => {
-  console.log("renderFile");
+  // console.log("renderFile");
   try {
     const csvFile = await file.findOne({ file: req.params.id });
     if (!csvFile) {
@@ -62,8 +63,9 @@ export const renderFile = async (req, res) => {
 
       .on("data", (data) => results_array.push(data))
       .on("end", () => {
-        // console.log(results.length);
-        console.log(results_array);
+        // console.log(results_array.length);
+        // console.log(results_array);
+
         res.render("list_csv", {
           title: "File Viewer",
           fileName: csvFile.filename,

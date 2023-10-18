@@ -3,11 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Document</title>
+    <style></style>
   </head>
   <body>
     <div>
       <h1>csv upload viewer!!!</h1>
+    </div>
+
+    <div>
+      <canvas id="myChart" width="400" height="100"></canvas>
     </div>
 
     <div>
@@ -32,5 +38,36 @@
         </tbody>
       </table>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // const dataFromController = <%= JSON.stringify(data) %>;
+
+      const labels = dataFromController.map((item) => item.Date); // Assuming Date is the label
+      const marketPriceData = dataFromController.map((item) => item.Close); // Assuming Close is the market price
+
+      const ctx = document.getElementById("myChart");
+
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: ["Date", "Open", "High", "Low", "Close", "Next Day'"],
+          datasets: [
+            {
+              label: "# market price",
+              data: marketPriceData,
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+    </script>
+    <script src="/js/ajax_data.js"></script>
   </body>
 </html>

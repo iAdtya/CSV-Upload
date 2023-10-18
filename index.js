@@ -3,7 +3,6 @@ import routes from "./routes/index.js";
 import responseTime from "response-time";
 import client from "prom-client";
 
-
 const app = express();
 
 import dotenv from "dotenv";
