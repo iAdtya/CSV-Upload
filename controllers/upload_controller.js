@@ -43,6 +43,32 @@ export const uploadFile = async (req, res) => {
   }
 };
 
+export const sendParsedData = async (req, res) => {
+  try {
+    const csvFile = await file.findOne({ file: req.params.id });
+    if (!csvFile) {
+      return res.status(404).json({ error: "File not found" });
+    }
+    const results_array = [];
+    const header = [];
+
+    fs.createReadStream(csvFile.path)
+      .pipe(parse())
+      .on("headers", (headers) => {
+        headers.map((head) => {
+          header.push(head);
+        });
+      })
+      .on("data", (data) => results_array.push(data))
+      .on("end", () => {
+        res.json({ data: results_array }); // Send the parsed data as JSON
+      });
+  } catch (error) {
+    console.error("Error in sendParsedData route:", error);
+    res.status(500).json({ error: "Something went wrong" });
+  }
+};
+
 export const renderFile = async (req, res) => {
   // console.log("renderFile");
   try {
@@ -58,7 +84,7 @@ export const renderFile = async (req, res) => {
         headers.map((head) => {
           header.push(head);
         });
-        console.log(header); //?debug
+        // console.log(header); //?debug
       })
 
       .on("data", (data) => results_array.push(data))
@@ -79,6 +105,7 @@ export const renderFile = async (req, res) => {
     res.status(500).json({ error: "Something went wrong" });
   }
 };
+
 
 export const deleteFile = async (req, res) => {
   try {

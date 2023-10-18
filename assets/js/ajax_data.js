@@ -1,20 +1,33 @@
 {
-  console.log("ajax_data.js");
-  document.addEventListener("DOMContentLoaded", () => {
-    // Make an Ajax request to fetch data
-    fetch("/api/data") // Replace with your data endpoint
-      .then((response) => response.json())
-      .then((data) => {
-        renderLineChart(data);
-      })
-      .catch((error) => console.error("Error fetching data:", error));
+  console.log("Hello from ajax_data.js");
+  const fileId = document
+    .querySelector(".data-link")
+    .getAttribute("data-file-id");
+
+  const url = `/data/${fileId}`;
+
+  fetch(url)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((dataFromServer) => {
+    console.log("Data received from the server:", dataFromServer); // Add this line
+    createChart(dataFromServer);
+  })
+  .catch((error) => {
+    console.error("Error fetching data:", error);
   });
-  function renderLineChart(data) {
+
+  function createChart(data) {
+    console.log("Received data:", data);
     const labels = data.map((item) => item.Date);
     const marketPriceData = data.map((item) => item.Close);
-  
+
     const ctx = document.getElementById("myChart");
-  
+
     new Chart(ctx, {
       type: "line",
       data: {
