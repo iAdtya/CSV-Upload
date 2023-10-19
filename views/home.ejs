@@ -7,12 +7,11 @@
       src="https://kit.fontawesome.com/f383b6eabf.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Csv Upload!!</title>
   </head>
   <body>
-    <nav>
-      <h1>Csv Upload!!</h1>
-    </nav>
+    <%-include('_navbar') %>
     <div>
       <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" id="csvUpload" name="uploaded_file" accept=".csv" />
