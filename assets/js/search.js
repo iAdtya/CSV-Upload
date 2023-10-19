@@ -1,10 +1,13 @@
-console.log('Im in');
+document.getElementById("go").addEventListener("click", searchTable);
 
-document.getElementById('search').addEventListener('click', () => {
-
-  const input = document.getElementById('input').value.toLowerCase();
+function searchTable() {
+  // Get the input value and convert it to lowercase
+  const input = document.getElementById("search-input").value.toLowerCase();
   console.log(input);
-  const rows = document.querySelectorAll('tr');
+  
+  // Get all table rows and iterate through them
+  const rows = document.getElementsByTagName("tr");
+
   for (let i = 0; i < rows.length; i++) {
     // Get the text content of each row and convert it to lowercase
     const rowText = rows[i].textContent.toLowerCase();
@@ -16,4 +19,4 @@ document.getElementById('search').addEventListener('click', () => {
       rows[i].classList.remove("highlight");
     }
   }
-})
+}

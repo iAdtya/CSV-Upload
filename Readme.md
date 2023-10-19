@@ -1,6 +1,6 @@
 # Project Name
 
-CSV UPLOAD
+CSV UPLOAD and Charting
 
 ## Installation
 
@@ -14,9 +14,9 @@ CSV UPLOAD
 
 ## Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Csv Parser
+- Charting
+- Searching
 
 ## License
 
