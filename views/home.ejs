@@ -10,17 +10,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Csv Upload!!</title>
   </head>
-  <body>
+  <body class="bg-gray-900">
     <%-include('_navbar') %>
-    <div>
-      <form action="/upload" method="post" enctype="multipart/form-data">
+    <section>
+      <div class="text-center text-white mt-[150px]">
+        <h1 class="font-bold text-4xl">Upload a File Here</h1>
+        <p class="text-gray-400 text-lg">
+          Reads CSV file and displays its content in tabular & Chart form
+        </p>
+      </div>
+
+      <form
+        class="bg-yellow-400 flex p-8 w-96 mt-[50px] mx-auto rounded-full"
+        action="/upload"
+        method="post"
+        enctype="multipart/form-data"
+      >
         <input type="file" id="csvUpload" name="uploaded_file" accept=".csv" />
-        <button>upload</button>
+        <button
+          class="text-white bg-green-500 justify-center hover:bg-green-500 focus:ring-4 focus:outline-none focus:ring-green-500 font-medium rounded-full text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500"
+        >
+          upload
+        </button>
       </form>
 
       <div>
-        <div>
-          <h1>uploaded Files!!</h1>
+        <div
+          class="list-center-text rounded-full mx-auto  w-[100vh] font-bold text-3xl bg-green-500 mt-8 text-center text-white font-franklin"
+        >
+          <h2>Uploaded files</h2>
         </div>
 
         <%if(file.length==0){%>
@@ -71,6 +89,6 @@
         </table>
         <% } %>
       </div>
-    </div>
+    </section>
   </body>
 </html>

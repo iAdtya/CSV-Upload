@@ -4,42 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Csv Upload!!</title>
-
   </head>
   <body>
-    <nav>
-      <h1>
-        Csv Upload!!
-      </h1>
-    </nav>
+    <%-include('_navbar') %>
+    <section class="mt-[150px]">
+      <div>
+        <canvas id="myChart" width="400" height="100"></canvas>
+      </div>
 
-    <div>
-      <canvas id="myChart" width="400" height="100"></canvas>
-    </div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <%for(let i of head) {%>
+              <th><%=i %></th>
+              <%}%>
+            </tr>
+          </thead>
+          <tbody>
+            <%for(let row of data) {%>
+            <tr>
+              <% for(let key of Object.keys(row)){%>
 
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <%for(let i of head) {%>
-            <th><%=i %></th>
+              <td><%=row[key]%></td>
+
+              <%}%>
+            </tr>
             <%}%>
-          </tr>
-        </thead>
-        <tbody>
-          <%for(let row of data) {%>
-          <tr>
-            <% for(let key of Object.keys(row)){%>
-
-            <td><%=row[key]%></td>
-
-            <%}%>
-          </tr>
-          <%}%>
-        </tbody>
-      </table>
-    </div>
-   <script type="module" src="/js/ajax_data.js"></script>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <script type="module" src="/js/ajax_data.js"></script>
   </body>
 </html>
