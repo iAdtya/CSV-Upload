@@ -1,7 +1,4 @@
 # CSV UPLOAD and Charting
-<<<<<<< HEAD
-CSV UPLOAD is a web-app allows the user to upload and parse CSV files with Charting, The application is built with Node.js and Express, and it provides a simple and user-friendly interface for managing CSV data !!!
-=======
 CSV UPLOAD is a web-app allows the user to upload and parse CSV files with charting, The application is built with Node.js and Express, and it provides a simple and user-friendly interface for managing CSV data !!!
 ## (upload files for parsing!!)
 ![Screenshot 2023-10-20 031755](https://github.com/iAdtya/CSV-Upload/assets/93979441/935ea69b-7972-467e-bae9-04577c34df57)
