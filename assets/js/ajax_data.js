@@ -13,6 +13,14 @@
         throw new Error("Data is not an array");
       }
 
+      // const validHeaders = ["DATE", "OPEN", "HIGH", "LOW", "CLOSE", "NEXT DAY"];
+      // const headers = Object.keys(data.data[0]);
+      // const isValidData = headers.every((header) => validHeaders.includes(header));
+
+      // if (!isValidData) {
+      //   throw new Error("Data headers are not valid");
+      // }
+
       const labels = data.data.map((item) => item.Date);
       const marketPriceData = data.data.map((item) => item.Close); // Assuming Close is the market price
 

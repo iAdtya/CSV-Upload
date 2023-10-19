@@ -81,8 +81,10 @@ export const renderFile = async (req, res) => {
     fs.createReadStream(csvFile.path)
       .pipe(parse())
       .on("headers", (headers) => {
-        headers.map((head) => {
-          header.push(head);
+        headers.forEach((head) => {
+          if (["DATE", "OPEN", "HIGH", "LOW", "CLOSE"].includes(head)) {
+            header.push(head);
+          }
         });
         // console.log(header); //?debug
       })
