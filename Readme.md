@@ -1,6 +1,5 @@
-# Project Name
-
-CSV UPLOAD and Charting
+# CSV UPLOAD and Charting
+CSV UPLOAD is a web-app allows the user to upload and parse CSV files with charting, The application is built with Node.js and Express, and it provides a simple and user-friendly interface for managing CSV data !!!
 
 ## Installation
 
