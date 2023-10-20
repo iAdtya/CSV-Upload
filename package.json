@@ -5,8 +5,8 @@
   "description": "CSV UPLOAD is a web-app allows the user to upload and parse CSV files, The application is built with Node.js and Express, and it provides a simple and user-friendly interface for managing CSV data",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
