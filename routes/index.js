@@ -4,13 +4,13 @@ import home from "../controllers/home_controller.js";
 
 import {
   uploadFile,
-  upload,
   renderFile,
   deleteFile,
   sendParsedData,
 } from "../controllers/upload_controller.js";
 
 const router = express.Router();
+const upload = multer({ dest: "uploads/files" });
 
 router.get("/", home);
 router.post("/upload", upload.single("uploaded_file"), uploadFile);
