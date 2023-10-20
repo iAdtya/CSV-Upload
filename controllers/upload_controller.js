@@ -1,6 +1,6 @@
 import file from "../models/Files.js";
-import multer from "multer";
-import path from "path";
+// import multer from "multer";
+// import path from "path";
 import parse from "csv-parser";
 import fs from "fs";
 
@@ -17,7 +17,7 @@ import fs from "fs";
 //   },
 // });
 
-export const upload = multer({ storage: storage });
+// export const upload = multer({ storage: storage });
 
 export const uploadFile = async (req, res) => {
   console.log("req.file:", req.file);
