@@ -3,7 +3,6 @@ import multer from "multer";
 import path from "path";
 import parse from "csv-parser";
 import fs from "fs";
-import { Chart } from "chart.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -108,12 +107,11 @@ export const renderFile = async (req, res) => {
   }
 };
 
-
 export const deleteFile = async (req, res) => {
   try {
-    const delfile = await file.findOne({ file: req.params.id });
+    const delfile = await file.findById(req.params.id);
     if (!delfile) {
-      return res.status(404).send({ error: "File not found" }).redirect("/");
+      return res.status(404).send({ error: "File not found" });
     } else {
       await delfile.deleteOne({ file: req.params.id });
       console.log("File deleted successfully");
