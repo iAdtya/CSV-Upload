@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
-const uri = 'mongodb+srv://adityakhedekar98906:csv-parser@csv.p4q6bws.mongodb.net/?retryWrites=true&w=majority'
+const uri = process.env.uri;
 
 export const connectDB = async () => {
   try {
