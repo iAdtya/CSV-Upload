@@ -1,0 +1,13 @@
+runtime: nodejs18
+
+service: default
+
+handlers:
+  # Serve EJS templates
+  - url: /views/.*
+    static_files: views/\1
+    upload: views/.*
+
+  # Serve all other requests through the app's default entry point
+  - url: /.*
+    script: auto
