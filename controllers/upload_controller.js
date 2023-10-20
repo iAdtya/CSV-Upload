@@ -20,12 +20,14 @@ const storage = multer.diskStorage({
 export const upload = multer({ storage: storage });
 
 export const uploadFile = async (req, res) => {
-  console.log(req.file);
+  console.log("req.file:", req.file);
   try {
     if (!req.file) {
+      console.log("No file uploaded");
       return res.status(400).send("Please upload a file");
     }
     if (req.file.mimetype != "text/csv") {
+      console.log("Invalid file type:", req.file.mimetype);
       return res.status(400).send("Select CSV files only.");
     }
 
@@ -38,6 +40,7 @@ export const uploadFile = async (req, res) => {
     console.log("File uploaded successfully", newfile);
     return res.status(200).redirect("/");
   } catch (error) {
+    console.error("Error:", error);
     res.status(500).json({ error: "Something went wrong" });
   }
 };
