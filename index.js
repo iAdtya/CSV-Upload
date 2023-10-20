@@ -59,11 +59,12 @@ app.get("/metrics", async (req, res) => {
   res.send(metrics);
 });
 
+  await connectDB();
+
 app.listen(port, async (error) => {
   if (error) {
     console.log(`error in running the server :: ${error}`);
     return;
   }
   console.log(`Server beating 💓 on port :: ${port}`);
-  await connectDB();
 });
