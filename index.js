@@ -59,12 +59,27 @@ app.get("/metrics", async (req, res) => {
   res.send(metrics);
 });
 
-  await connectDB();
+//   await connectDB();
 
-app.listen(port, async (error) => {
-  if (error) {
-    console.log(`error in running the server :: ${error}`);
-    return;
+// app.listen(port, async (error) => {
+//   if (error) {
+//     console.log(`error in running the server :: ${error}`);
+//     return;
+//   }
+//   console.log(`Server beating 💓 on port :: ${port}`);
+// });
+
+
+const startServer = async () => {
+  try {
+    await connectDB();
+    console.log('MongoDB connected successfully');
+    app.listen(port, () => {
+      console.log(`Server beating 💓 on port :: ${port}`);
+    });
+  } catch (error) {
+    console.log('Error connecting to MongoDB:', error);
   }
-  console.log(`Server beating 💓 on port :: ${port}`);
-});
+};
+
+startServer();
