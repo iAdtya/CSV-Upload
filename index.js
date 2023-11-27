@@ -10,7 +10,7 @@ dotenv.config();
 
 import { connectDB } from "./config/mongoose.js";
 
-const port = process.env.port || 8001;
+const PORT = process.env.PORT || 8001;
 
 app.set("view engine", "ejs");
 app.set("views", "./views");
@@ -74,10 +74,10 @@ const startServer = async () => {
   try {
     await connectDB();
     console.log('MongoDB connected successfully');
-    app.listen(port, () => {
-      console.log(`Server beating 💓 on port :: ${port}`);
+    app.listen(PORT, () => {
+      console.log(`Server beating 💓 on port :: ${PORT}`);
     });
-  } catch (error) {
+  } catch (error) {PORT
     console.log('Error connecting to MongoDB:', error);
   }
 };
